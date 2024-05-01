@@ -18,11 +18,8 @@ const ProjectsOverview = () => {
 							{projects.map((project) => (
 								<div className="border shadow-md rounded-md p-3" key={project.id}>
 									<Image src={`/projects/${project.image}`} width={300} height={200} alt="image" className="rounded-md w-full aspect-video object-cover" />
-
 									<h3 className="font-semibold mt-2">{project.title}</h3>
-									
 									<Button type="primary">
-
 										<Link href={`/dashboard/projects/${project.id}`}>Manage</Link>
 									</Button>
 								</div>

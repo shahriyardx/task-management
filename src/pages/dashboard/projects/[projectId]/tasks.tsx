@@ -2,17 +2,16 @@ import DashboardLayout from "@/components/DashboardLayout";
 import TaskColumn from "@/components/TaskColumn";
 import { PrivateRoute } from "@/hooks/useAuth";
 import { useProjects } from "@/hooks/useProjects";
+import { Task } from "@/types";
 import { useRouter } from "next/router";
-import React, { ComponentProps, useMemo } from "react";
+import React, { useMemo } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
-const TaskList = (props: ComponentProps<"div">) => {
-  return <div className="flex flex-col gap-2"></div>;
-};
+type TaskStatus = "to-do" | "in-progress" | "done";
 
 const ProjectTasks = () => {
   const router = useRouter();
-  const { projects } = useProjects();
+  const { projects, updateTasks } = useProjects();
   const project = useMemo(
     () => projects.find((project) => project.id === router.query.projectId),
     [projects, router.query.projectId]
@@ -37,7 +36,21 @@ const ProjectTasks = () => {
   );
 
   const handleDragEnd = (result: DropResult) => {
-    console.log(result);
+    if (
+      project &&
+      result.destination &&
+      result.source.droppableId !== result.destination.droppableId
+    ) {
+      const newProject = { ...project };
+      newProject.tasks = project.tasks.map((task) => {
+        if (task.id == result.draggableId) {
+          task.status = result.destination?.droppableId as TaskStatus;
+        }
+
+        return task;
+      });
+      updateTasks(project.id, newProject);
+    }
   };
 
   return (
@@ -48,7 +61,11 @@ const ProjectTasks = () => {
         <DragDropContext onDragEnd={handleDragEnd}>
           <div className="grid grid-cols-3 gap-5 mt-10 select-none">
             <TaskColumn title="Todo" tasks={todoTasks} id="to-do" />
-            <TaskColumn title="In Progress" tasks={inProgressTasks} id="in-progress" />
+            <TaskColumn
+              title="In Progress"
+              tasks={inProgressTasks}
+              id="in-progress"
+            />
             <TaskColumn title="Done" tasks={doneTasks} id="done" />
           </div>
         </DragDropContext>
