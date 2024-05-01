@@ -1,0 +1,6 @@
+[
+  {"id": "web-app","title": "Web Application", "image": "web-app.gif", "members": [], "tasks": []},
+  {"id": "android-app", "title": "Android Application", "image": "android-app.jpg", "members": [], "tasks": []},
+  {"id": "penetration-testing", "title": "Penetration Testing", "image": "penetration.jpg", "members": [], "tasks": []},
+  {"id": "cloud-infastructure", "title": "Cloud Infatructure", "image": "cloud.jpg", "members": [], "tasks": []}
+]

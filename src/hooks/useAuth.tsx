@@ -41,7 +41,7 @@ export const useAuth = () => {
 		localStorage.setItem("user", JSON.stringify(userData.user))
 		setUser(userData.user)
 
-		router.push("/dashboard")
+		router.push("/dashboard/projects")
 	}
 
 	const logout = () => {
