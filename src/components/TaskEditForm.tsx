@@ -34,8 +34,16 @@ const TaskEditForm = ({
         task.deadline = dayjs(values.deadline).toDate();
       }
     });
+    values.members.forEach((member) => addMember(member));
     updateProject(project.id, newProject);
     closeModal();
+  };
+
+  const addMember = (member: string) => {
+    if (project.members.find((m) => m.username === member)) return;
+    const newProject = { ...project };
+    newProject.members.push({ username: member });
+    updateProject(project.id, newProject);
   };
 
   return (
@@ -73,7 +81,7 @@ const TaskEditForm = ({
         rules={[{ required: true, message: "Please input your username!" }]}
       >
         <Select
-          mode="multiple"
+          mode="tags"
           placeholder="Select members"
           defaultValue={task.members.map((m) => m.username)}
           options={project.members.map((member) => ({

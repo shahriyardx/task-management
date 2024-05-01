@@ -32,8 +32,17 @@ const TaskCreateForm = ({
       id: createId(),
     });
 
+    values.members.forEach(member => addMember(member))
+
     updateProject(project.id, newProject);
     closeModal();
+  };
+
+  const addMember = (member: string) => {
+    if (project.members.find((m) => m.username === member)) return;
+    const newProject = { ...project };
+    newProject.members.push({ username: member });
+    updateProject(project.id, newProject);
   };
 
   return (
@@ -66,7 +75,7 @@ const TaskCreateForm = ({
         rules={[{ required: true, message: "select at-least one member" }]}
       >
         <Select
-          mode="multiple"
+          mode="tags"
           placeholder="Select members"
           options={project.members.map((member) => ({
             label: member.username,
