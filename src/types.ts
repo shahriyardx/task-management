@@ -4,6 +4,7 @@ export type Member = {
 }
 
 export type Task = {
+  id: string
   title: string
   deadline: Date,
   assignedTo: Member

@@ -8,7 +8,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 				<h3 className="px-3 py-5 border-r font-bold text-center border-b-2">Dashboard</h3>
 				<Sidebar />
 			</div>
-			{children}
+			<div>
+
+				<div className="p-5">
+					{children}
+				</div>
+			</div>
 		</div>
 	)
 }
