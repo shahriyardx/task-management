@@ -8,9 +8,10 @@ type Props = ComponentProps<"div"> & {
   title: string;
   tasks: TaskType[];
   id: string;
+  showModal: (task: TaskType) => void;
 };
 
-const TaskColumn = ({ tasks, title, id }: Props) => {
+const TaskColumn = ({ tasks, title, id, showModal }: Props) => {
   return (
     <div className="border rounded-md shadow-md">
       <h2 className="block bg-zinc-200 p-3">{title}</h2>
@@ -19,7 +20,12 @@ const TaskColumn = ({ tasks, title, id }: Props) => {
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {tasks.map((task, index) => (
-                <Task key={task.id} task={task} index={index} />
+                <Task
+                  key={task.id}
+                  task={task}
+                  index={index}
+                  showModal={showModal}
+                />
               ))}
               {provided.placeholder}
             </div>

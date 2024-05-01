@@ -1,13 +1,12 @@
 export type Member = {
   username: string
-  email: string
 }
 
 export type Task = {
   id: string
   title: string
   deadline: Date,
-  assignedTo: Member
+  members: Array<Member>
   status: "to-do" | "in-progress" | "done"
 }
 

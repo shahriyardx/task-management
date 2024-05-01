@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.20.0",
+    "@paralleldrive/cuid2": "^2.2.2",
     "@types/react-beautiful-dnd": "^13.1.8",
     "antd": "^5.16.5",
     "autoprefixer": "^10.4.19",
