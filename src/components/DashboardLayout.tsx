@@ -1,21 +1,30 @@
-import React from "react"
-import Sidebar from "./Sidebar"
+import React, { useMemo } from "react";
+import Sidebar from "./Sidebar";
+import { useProjectsState } from "@/states/projects";
+import { useRouter } from "next/router";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<div className="grid grid-cols-[250px,auto]">
-			<div>
-				<h3 className="px-3 py-5 border-r font-bold text-center border-b-2">Dashboard</h3>
-				<Sidebar />
-			</div>
-			<div>
+  const router = useRouter();
 
-				<div className="p-5">
-					{children}
-				</div>
-			</div>
-		</div>
-	)
-}
+  const { projects } = useProjectsState();
+  const project = useMemo(
+    () => projects.find((project) => project.id === router.query.projectId),
+    [projects, router]
+  );
 
-export default DashboardLayout
+  return (
+    <div className="grid grid-cols-[250px,auto]">
+      <div>
+        <h3 className="px-3 py-5 border-r font-bold border-b-2">
+          {project?.title}
+        </h3>
+        <Sidebar />
+      </div>
+      <div>
+        <div className="p-5">{children}</div>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardLayout;

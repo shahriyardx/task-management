@@ -20,7 +20,7 @@ const ProjectsOverview = () => {
 									<Image src={`/projects/${project.image}`} width={300} height={200} alt="image" className="rounded-md w-full aspect-video object-cover" />
 									<h3 className="font-semibold mt-2">{project.title}</h3>
 									<Button type="primary">
-										<Link href={`/dashboard/projects/${project.id}`}>Manage</Link>
+										<Link href={`/dashboard/projects/${project.id}/members`}>Manage</Link>
 									</Button>
 								</div>
 							))}

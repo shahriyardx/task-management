@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: false,
 	images: {
-		remotePatterns: [{hostname: "ui-avatars.com"}]
+		remotePatterns: [{hostname: "ui-avatars.com"}, {hostname: "i.pravatar.cc"}]
 	},
 	transpilePackages: [
 		"@ant-design",

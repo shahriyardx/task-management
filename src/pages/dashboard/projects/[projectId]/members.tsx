@@ -1,8 +1,9 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import MemberCreateForm from "@/components/MemberCreateForm";
+import ProjectSelector from "@/components/ProjectSelector";
 import { PrivateRoute } from "@/hooks/useAuth";
 import { useProjects } from "@/hooks/useProjects";
-import { Button, Modal, Table } from "antd";
+import { Avatar, Button, Modal, Table } from "antd";
 import { useForm } from "antd/es/form/Form";
 import Column from "antd/es/table/Column";
 import Image from "next/image";
@@ -36,30 +37,34 @@ const ProjectMembers = () => {
   return (
     <PrivateRoute>
       <DashboardLayout>
-        <h1 className="text-4xl font-bold flex items-center gap-3">
-          Members{" "}
-          <Button type="primary" onClick={() => setCreateModalOpen(true)}>
-            Add new
-          </Button>
-        </h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl font-bold flex items-center gap-3">
+            Members{" "}
+            <Button type="primary" onClick={() => setCreateModalOpen(true)}>
+              Add new
+            </Button>
+          </h1>
+          <ProjectSelector />
+        </div>
 
         <div className="mt-5">
           <Table
-            dataSource={project?.members.map((member, index) => ({
-              ...member,
-              index: index + 1,
-            })) || []}
+            dataSource={
+              project?.members.map((member, index) => ({
+                ...member,
+                index: index + 1,
+              })) || []
+            }
           >
             <Column title="SL" dataIndex="index" />
             <Column
               title="Avatar"
               render={(value) => (
-                <Image
-                  src={`https://ui-avatars.com/api/?name=${value?.username}`}
-                  alt={value?.username}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
+                <Avatar
+                  className="w-10 h-10 rounded-full"
+                  key={value.username}
+                  src={`https://i.pravatar.cc/150?u=${value.username}`}
+                  alt={value.username}
                 />
               )}
             />

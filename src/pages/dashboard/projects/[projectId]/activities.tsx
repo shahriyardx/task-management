@@ -1,5 +1,6 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import MemberCreateForm from "@/components/MemberCreateForm";
+import ProjectSelector from "@/components/ProjectSelector";
 import { PrivateRoute } from "@/hooks/useAuth";
 import { useProjects } from "@/hooks/useProjects";
 import { Button, Modal, Table } from "antd";
@@ -22,9 +23,12 @@ const ProjectMembers = () => {
   return (
     <PrivateRoute>
       <DashboardLayout>
-        <h1 className="text-4xl font-bold flex items-center gap-3">
-          Activities
-        </h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl font-bold flex items-center gap-3">
+            Activities
+          </h1>
+          <ProjectSelector />
+        </div>
 
         <div className="mt-5">
           <Table
