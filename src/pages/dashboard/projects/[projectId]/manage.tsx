@@ -7,6 +7,7 @@ import { useForm } from "antd/es/form/Form";
 import { useProjectsState } from "@/states/projects";
 import { useRouter } from "next/router";
 import ProjectSelector from "@/components/ProjectSelector";
+import MenuToggleButton from "@/components/MenuToggleButton";
 
 type FieldType = {
   name: string;
@@ -43,7 +44,10 @@ const ManageProject = () => {
     <PrivateRoute>
       <DashboardLayout>
         <div className="flex items-center justify-between">
-          <h1 className="text-4xl font-bold flex items-center gap-3">Manage</h1>
+          <h1 className="text-4xl font-bold flex items-center gap-3">
+            <MenuToggleButton />
+            Manage
+          </h1>
 
           <ProjectSelector />
         </div>

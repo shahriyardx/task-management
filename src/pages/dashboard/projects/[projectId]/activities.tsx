@@ -1,5 +1,6 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import MemberCreateForm from "@/components/MemberCreateForm";
+import MenuToggleButton from "@/components/MenuToggleButton";
 import ProjectSelector from "@/components/ProjectSelector";
 import { PrivateRoute } from "@/hooks/useAuth";
 import { useProjects } from "@/hooks/useProjects";
@@ -25,7 +26,7 @@ const ProjectMembers = () => {
       <DashboardLayout>
         <div className="flex items-center justify-between">
           <h1 className="text-4xl font-bold flex items-center gap-3">
-            Activities
+            <MenuToggleButton /> Activities
           </h1>
           <ProjectSelector />
         </div>

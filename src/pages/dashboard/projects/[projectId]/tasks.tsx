@@ -12,6 +12,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import dayjs from "dayjs";
 import TaskCreateForm from "@/components/TaskCreateForm";
 import ProjectSelector from "@/components/ProjectSelector";
+import MenuToggleButton from "@/components/MenuToggleButton";
 
 type TaskStatus = "to-do" | "in-progress" | "done";
 
@@ -94,6 +95,7 @@ const ProjectTasks = () => {
       <DashboardLayout>
         <div className="flex items-center justify-between">
           <h1 className="text-4xl font-bold flex items-center gap-3">
+            <MenuToggleButton />
             Tasks{" "}
             <Button type="primary" onClick={() => setCreateModalOpen(true)}>
               Add new
@@ -103,7 +105,7 @@ const ProjectTasks = () => {
         </div>
 
         <DragDropContext onDragEnd={handleDragEnd}>
-          <div className="grid grid-cols-3 gap-5 mt-10 select-none">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 select-none">
             <TaskColumn
               title="Todo"
               tasks={todoTasks}

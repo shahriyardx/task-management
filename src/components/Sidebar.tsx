@@ -8,6 +8,7 @@ import {
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import { useRouter } from "next/router";
+import { useSidebarState } from "@/states/sidebar";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -36,8 +37,10 @@ const items: MenuItem[] = [
 
 const Sidebar = () => {
   const router = useRouter();
+  const { close } = useSidebarState();
   const onClick: MenuProps["onClick"] = (e) => {
     const projectId = router.query.projectId;
+    close();
     router.push(`/dashboard/projects/${projectId}/${e.key}`);
   };
 
