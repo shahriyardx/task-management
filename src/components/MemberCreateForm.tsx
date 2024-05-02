@@ -17,12 +17,13 @@ const MemberCreateForm = ({
   project: Project;
   closeModal: () => void;
 }) => {
-  const { updateProject } = useProjects();
+  const { updateProject, addActivity } = useProjects();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const newProject = { ...project };
     project.members.push({ username: values.username });
 
     updateProject(project.id, newProject);
+    addActivity(project.id, `New member created '${values.username}'`);
     closeModal();
   };
 

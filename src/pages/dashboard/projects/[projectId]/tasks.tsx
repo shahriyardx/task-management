@@ -16,7 +16,7 @@ type TaskStatus = "to-do" | "in-progress" | "done";
 
 const ProjectTasks = () => {
   const router = useRouter();
-  const { projects, updateProject } = useProjects();
+  const { projects, updateProject, addActivity } = useProjects();
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [form] = useForm();
   const [createForm] = useForm();
@@ -56,6 +56,10 @@ const ProjectTasks = () => {
       newProject.tasks = project.tasks.map((task) => {
         if (task.id == result.draggableId) {
           task.status = result.destination?.droppableId as TaskStatus;
+          addActivity(
+            project.id,
+            `Task '${task.title}' moved from '${result.source.droppableId}' to '${result.destination?.droppableId}'`
+          );
         }
 
         return task;
@@ -124,7 +128,12 @@ const ProjectTasks = () => {
           onCancel={handleCancel}
         >
           {editingTask && project && (
-            <TaskEditForm project={project} task={editingTask} form={form} closeModal={handleCancel} />
+            <TaskEditForm
+              project={project}
+              task={editingTask}
+              form={form}
+              closeModal={handleCancel}
+            />
           )}
         </Modal>
 

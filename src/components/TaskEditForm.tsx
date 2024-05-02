@@ -22,7 +22,7 @@ const TaskEditForm = ({
   project: Project;
   closeModal: () => void;
 }) => {
-  const { updateProject } = useProjects();
+  const { updateProject, addActivity } = useProjects();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const newProject = { ...project };
     project.tasks.map((t) => {
@@ -35,6 +35,18 @@ const TaskEditForm = ({
       }
     });
     values.members.forEach((member) => addMember(member));
+    if (task.title !== values.title)
+      addActivity(
+        project.id,
+        `Task changed from '${task.title}' to '${values.title}'`
+      );
+
+    if (task.deadline !== dayjs(values.deadline).toDate())
+      addActivity(project.id, `Task '${values.title}' deadline updated`);
+
+    if (task.members.length !== values.members.length)
+      addActivity(project.id, `Members updated of task '${task.title}'`);
+
     updateProject(project.id, newProject);
     closeModal();
   };
@@ -44,6 +56,7 @@ const TaskEditForm = ({
     const newProject = { ...project };
     newProject.members.push({ username: member });
     updateProject(project.id, newProject);
+    addActivity(project.id, `Memebr '${member}' added`);
   };
 
   return (

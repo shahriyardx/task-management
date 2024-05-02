@@ -21,7 +21,7 @@ const TaskCreateForm = ({
   project: Project;
   closeModal: () => void;
 }) => {
-  const { updateProject } = useProjects();
+  const { updateProject, addActivity } = useProjects();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const newProject = { ...project };
     project.tasks.push({
@@ -32,8 +32,11 @@ const TaskCreateForm = ({
       id: createId(),
     });
 
-    values.members.forEach(member => addMember(member))
-
+    values.members.forEach((member) => addMember(member));
+    addActivity(
+      project.id,
+      `New task '${values.title}' added to ${project.title}`
+    );
     updateProject(project.id, newProject);
     closeModal();
   };

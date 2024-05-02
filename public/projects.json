@@ -4,27 +4,31 @@
     "title": "Web Application",
     "image": "web-app.gif",
     "members": [{ "username": "shahriyar" }, { "username": "kabir" }],
-    "tasks": []
+    "tasks": [],
+    "activities": []
   },
   {
     "id": "android-app",
     "title": "Android Application",
     "image": "android-app.jpg",
     "members": [],
-    "tasks": []
+    "tasks": [],
+    "activities": []
   },
   {
     "id": "penetration-testing",
     "title": "Penetration Testing",
     "image": "penetration.jpg",
     "members": [],
-    "tasks": []
+    "tasks": [],
+    "activities": []
   },
   {
     "id": "cloud-infastructure",
     "title": "Cloud Infatructure",
     "image": "cloud.jpg",
     "members": [],
-    "tasks": []
+    "tasks": [],
+    "activities": []
   }
 ]

@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useQuery } from "react-query"
 
 export const useProjects = () => {
-  const { projects, setProjects, updateProject } = useProjectsState();
+  const { projects, setProjects, updateProject, addActivity } = useProjectsState();
 
   const { data, isLoading } = useQuery<Project[]>({
     queryKey: ['projects'],
@@ -19,5 +19,5 @@ export const useProjects = () => {
     }
   }, [data, projects.length, setProjects])
 
-  return { projects, isLoading, updateProject };
+  return { projects, isLoading, updateProject, addActivity };
 }
