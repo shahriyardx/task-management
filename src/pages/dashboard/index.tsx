@@ -5,7 +5,7 @@ import React from "react"
 const Dashboard = () => {
 	return (
 		<PrivateRoute>
-			<DashboardLayout>Hello</DashboardLayout>
+			<DashboardLayout>Dashboard</DashboardLayout>
 		</PrivateRoute>
 	)
 }
